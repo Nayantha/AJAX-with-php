@@ -5,7 +5,7 @@ function onLoad() {
     $.ajax({
         type: "GET",
         url: "get_items.php?id=" + noOfRowsToShow,
-        success: function (response) {
+        success: function (response){
             // console.log(response);
             let res = jQuery.parseJSON(response);
             if (res.last_item) {
@@ -14,22 +14,18 @@ function onLoad() {
             if (res.status === 422){
                 alert(response.message);
             }
-            if (res.status === 404) {
+            else if (res.status === 404) {
                 // noOfRowsToShow -= 1;
             }
             else if (res.status === 200){
                 const tableRow = document.createElement("tr");
-                const email = document.createElement("td");
-                const password = document.createElement("td");
-                const otp = document.createElement("td");
-                email.innerText = `${res.data.email}`;
-                password.innerText = `${res.data.password}`;
-                otp.innerText = `${res.data.otp}`;
-                tableRow.append(email);
-                tableRow.append(password);
-                tableRow.append(otp);
+                for (const key in res.data) {
+                    const data = document.createElement("td");
+                    data.innerHTML = res.data[key]
+                    tableRow.append(data);
+                }
                 table.append(tableRow);
-                $("#updateUser").load(location.href + " table");
+                // $("#updateUser").load(location.href + " table");
             }
         }
     });
