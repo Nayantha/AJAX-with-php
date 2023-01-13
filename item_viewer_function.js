@@ -6,15 +6,16 @@ function onLoad() {
         type: "GET",
         url: "get_items.php?id=" + noOfRowsToShow,
         success: function (response) {
-            console.log(response);
+            // console.log(response);
             let res = jQuery.parseJSON(response);
-            console.log(res);
+            if (res.last_item) {
+                $("#addAnotherRow").html('End of the line.').prop("disabled", true);
+            }
             if (res.status === 422){
                 alert(response.message);
             }
             if (res.status === 404) {
-                noOfRowsToShow -= 1;
-                $("#addAnotherRow").disabled = true;
+                // noOfRowsToShow -= 1;
             }
             else if (res.status === 200){
                 const tableRow = document.createElement("tr");
