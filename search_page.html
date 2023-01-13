@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label for="search-bar">Search</label>
+<input type="text" name="search-bar" id="search-bar" oninput="getRecommendedResults(this.value)">
+<div class="search-results"></div>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script src="search_logic.js"></script>
+</body>
+</html>
